@@ -60,7 +60,8 @@ fi
 # 4. 動作確認
 echo "=== 動作確認を実行します ==="
 if [ -L "AquesTalkPi" ] && [ -e "AquesTalkPi" ]; then
-    ./AquesTalkPi 'アクエストークパイの再配置が完了しました' | aplay
+    # 生成されたWAVデータをteeでtest.wavに書き出しつつ、aplayへパイプで渡して再生
+    ./AquesTalkPi 'アクエストークパイの再配置が完了しました' | tee test.wav | aplay
     echo "=== すべての手順が正常に完了しました ==="
 else
     echo "エラー: シンボリックリンクの作成、または実行バイナリに問題があります。"
