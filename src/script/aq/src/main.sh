@@ -1,8 +1,12 @@
 #!/bin/bash
 # AquesTalkPiの実行と、全体の制御フローを統括するメインスクリプト
 
+
+# シンボリックリンクの実体を追いかけて、正しい実パスを取得する
+REAL_PATH=$(readlink -f "${BASH_SOURCE[0]}")
+SCRIPT_DIR="$(cd "$(dirname "$REAL_PATH")" && pwd)"
 # 同一ディレクトリにあるモジュールを読み込み
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+#SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/env.sh"
 source "$SCRIPT_DIR/parser.sh"
 source "$SCRIPT_DIR/filter.sh"
